@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 # Create your models here.
 class Brand(models.Model):
@@ -64,4 +65,6 @@ class Stock(models.Model):
     number_in_stock = models.IntegerField()
     def __str__(self):
         return self.product.__str__()+": "+str(self.number_in_stock)
+    def isExpired(self):
+        return self.expiry_date < datetime.date.today()
     

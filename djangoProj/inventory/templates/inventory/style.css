@@ -1,3 +1,6 @@
-body{
-    text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap');
+font-family: 'Libre Barcode 128', cursive;
+
+barcode {
+
 }

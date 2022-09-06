@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap');
+
+.barcode {
+    font-family: 'Libre Barcode 128', cursive;
+    font-size: 90px;
+}
+
+body {
+    text-align: center;
+}
+
+.stock_table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    width: fit-content;
+}
+
+td {
+    border: 0.5px solid black;
+    margin: 0;
+}
+
+th {
+    border-left: 00.5px solid black;
+    border-right: 00.5px solid black;
+    border-bottom: 00.5px solid black;
+    margin: auto;
+}
+
+.stock_form {
+    line-break: anywhere;
+}

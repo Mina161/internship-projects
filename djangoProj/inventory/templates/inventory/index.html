@@ -6,7 +6,8 @@
     <title>Supermarkets</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./style.css" />
+    {%load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
   </head>
   <body>
     <h1>Supermarkets List</h1>
@@ -14,7 +15,7 @@
     <ul>
       {% for supermarket in supermarkets_list %}
       <li>
-        <a href="/inventory/supermarket/{{ supermarket.id }}/"
+        <a href="{% url 'inventory:SupermarketDetail' supermarket.id %}"
           >{{ supermarket.supermarket_name }} @ {{supermarket.address}}</a
         >
       </li>

@@ -6,21 +6,23 @@
     <title>{{supermarket.supermarket_name}} Stock</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./style.css" />
+    {%load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
   </head>
   <body>
     <h1>Stock List</h1>
     {% if stock_list %}
+    <div>
     <table class="stock_table">
-      {% for stockItem in stock_list %}
       <tr>
         <th>Product</th>
         <th>Number in Stock</th>
         <th>Actions</th>
       </tr>
+      {% for stockItem in stock_list %}
       <tr>
         <td>
-          <a href="/inventory/item/{{ stockItem.product.id }}/"
+          <a href="{% url 'inventory:ProductDetail' stockItem.product.id %}"
             >{{ stockItem.product.product_name}}</a
           >
         </td>
@@ -28,18 +30,50 @@
             <p>{{ stockItem.number_in_stock}}</p>
         </td>
         <td>
-            <button>Add More</button>
-            <form action="{% url 'inventory:checkOut' stockItem.id  %}" method="post">
-              {% csrf_token %}
+          <form action="{% url 'inventory:checkOut' stockItem.id %}" method="post">
+            {% csrf_token %}
             <button type="submit">Check Out one</button>
-            </form>
+          </form>
+          {%if stockItem.isExpired%}
+            <h1>EXPIRED</h1>
+          {%endif%}
         </td>
       </tr>
       {% endfor %}
     </table>
+  </div>
     {% else %}
     <p>Stock is empty.</p>
     {% endif %}
-    <script src="" async defer></script>
+    <div>
+      <h1> Add to stock </h1>
+      <form class="stock_form" action="{% url 'inventory:addStock' supermarket.id %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="product_id" class="form-label">Product</label>
+          <select class="form-control" name="product_id" id="product_id">
+            {%for product in product_list%}
+              <option value={{product.id}}>{{product.product_name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="expiry_date" class="form-label">Expiry Date</label>
+          <input type="date" class="form-control" name="expiry_date" id="expiry_date">
+        </input>
+        </div>
+        <div class="mb-3">
+          <label for="number_in_stock" class="form-label">Number in stock</label>
+          <input type="number" class="form-control" name="number_in_stock" id="number_in_stock">
+        </input>
+        </div>
+        <button type="submit">Add to stock</button>
+      </form>
+    </div>
+    {% if errorMessage %}
+    <script>
+      alert('{{errorMessage}}')
+    </script>
+    {% endif %}
   </body>
 </html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{ product.product_name }}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        {%load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
+    </head>
+    <body>
+        <h1>{{product.product_name}}</h1>
+        <p>Brand: {{product.brand}}</p>
+        <p>Category: {{product.category}}</p>
+        <p>Price: {{product.price}} / {{product.unit}}</p>
+        <label for="barcode">Barcode: </label><p id="barcode" class="barcode">{{product.barcode}}</p>
+        <script src="" async defer></script>
+    </body>
+</html>

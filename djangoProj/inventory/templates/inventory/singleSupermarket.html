@@ -3,16 +3,17 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{ supermarket_data.supermarket_name }}</title>
+        <title>{{ supermarket.supermarket_name }}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./style.css">
+        {%load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
     </head>
     <body>
-        <h1>Welcome to {{supermarket_data.supermarket_name}}</h1>
-        <p>Address: {{supermarket_data.address}}</p>
-        <p>Opening Date: {{supermarket_data.opening_date}}</p>
-        <button onclick="window.location.href='/inventory/supermarket/{{ supermarket_data.id }}/stock';">View Stock</button>
+        <h1>Welcome to {{supermarket.supermarket_name}}</h1>
+        <p>Address: {{supermarket.address}}</p>
+        <p>Opening Date: {{supermarket.opening_date}}</p>
+        <button onclick="window.location.href='{% url 'inventory:SupermarketStock' supermarket.id%}';">View Stock</button>
         <script src="" async defer></script>
     </body>
 </html>
