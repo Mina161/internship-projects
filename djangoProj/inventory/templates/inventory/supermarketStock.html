@@ -30,12 +30,13 @@
             <p>{{ stockItem.number_in_stock}}</p>
         </td>
         <td>
-          <form action="{% url 'inventory:checkOut' stockItem.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Check Out one</button>
-          </form>
           {%if stockItem.isExpired%}
-            <h1>EXPIRED</h1>
+            <strong>EXPIRED</strong>
+          {%else%}
+            <form action="{% url 'inventory:checkOut' stockItem.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Check Out one</button>
+            </form>
           {%endif%}
         </td>
       </tr>
