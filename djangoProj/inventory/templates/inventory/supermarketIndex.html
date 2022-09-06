@@ -3,24 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Inventory System</title>
+    <title>Supermarkets</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {%load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
   </head>
   <body>
-    <h1>Pages</h1>
+    <h1>Supermarkets List</h1>
+    {% if supermarkets_list %}
+    <ul>
+      {% for supermarket in supermarkets_list %}
       <li>
-        <a href="{% url 'inventory:SupermarketIndex'%}"
-          >Supermarkets</a
+        <a href="{% url 'inventory:SupermarketDetail' supermarket.id %}"
+          >{{ supermarket.supermarket_name }} @ {{supermarket.address}}</a
         >
       </li>
-      <li>
-        <a href="{% url 'inventory:ProductIndex'%}"
-          >Products</a
-        >
-      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No supermarkets are available.</p>
+    {% endif %}
     <script src="" async defer></script>
   </body>
 </html>

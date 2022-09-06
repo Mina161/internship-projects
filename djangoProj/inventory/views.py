@@ -8,34 +8,6 @@ from django.urls import reverse
 from django.views import generic
 from .models import Supermarket, Product, Stock, Brand
 
-# Create your views here.
-# def index(request):
-#     supermarkets_list = Supermarket.objects.values()
-#     context = {
-#         'supermarkets_list': supermarkets_list,
-#     }
-#     return render(request, 'inventory/index.html', context)
-
-# def supDetail(request, supermarket_id):
-#     supermarket = get_object_or_404(Supermarket, pk=supermarket_id)
-#     return render(request, 'inventory/singleSupermarket.html', {'supermarket_data': supermarket})
-
-# def supStock(request, supermarket_id):
-#     supermarket = get_object_or_404(Supermarket, pk=supermarket_id)
-#     stock_list = Stock.objects.filter(supermarket_id=supermarket_id).select_related()
-#     context = {
-#         'stock_list': stock_list,
-#         'supermarket': supermarket
-#     }
-#     return render(request, 'inventory/supermarketStock.html', context)
-
-# def prodDetail(request, product_id):
-#     product = get_object_or_404(Product, pk=product_id)
-#     context = {
-#         'product': product
-#     }
-#     return render(request, 'inventory/supermarketStock.html', context)
-
 def checkOut(request, stockItem_id):
     stock = get_object_or_404(Stock, pk=stockItem_id)
     stock.number_in_stock -= 1
@@ -60,12 +32,22 @@ def addStock(request, supermarket_id):
         return render(request, 'inventory/supermarketStock.html', context)
     else:
         return HttpResponseRedirect(reverse('inventory:SupermarketStock', args=(supermarket_id,)))
-class IndexView(generic.ListView):
+
+class IndexView(generic.TemplateView):
     template_name = 'inventory/index.html'
+class SupermarketIndexView(generic.ListView):
+    template_name = 'inventory/supermarketIndex.html'
     context_object_name = 'supermarkets_list'
 
     def get_queryset(self):
         return Supermarket.objects.values()
+
+class ProductIndexView(generic.ListView):
+    template_name = 'inventory/productIndex.html'
+    context_object_name = 'product_list'
+
+    def get_queryset(self):
+        return Product.objects.select_related()
 
 
 class SupermarketDetailView(generic.DetailView):
