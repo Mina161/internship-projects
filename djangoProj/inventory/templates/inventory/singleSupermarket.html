@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{ supermarket_data.supermarket_name }}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h1>Welcome to {{supermarket_data.supermarket_name}}</h1>
+        <p>Address: {{supermarket_data.address}}</p>
+        <p>Opening Date: {{supermarket_data.opening_date}}</p>
+        <button onclick="window.location.href='/inventory/supermarket/{{ supermarket_data.id }}/stock';">View Stock</button>
+        <script src="" async defer></script>
+    </body>
+</html>

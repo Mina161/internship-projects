@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{{supermarket.supermarket_name}} Stock</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <h1>Stock List</h1>
+    {% if stock_list %}
+    <table class="stock_table">
+      {% for stockItem in stock_list %}
+      <tr>
+        <th>Product</th>
+        <th>Number in Stock</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="/inventory/item/{{ stockItem.product.id }}/"
+            >{{ stockItem.product.product_name}}</a
+          >
+        </td>
+        <td>
+            <p>{{ stockItem.number_in_stock}}</p>
+        </td>
+        <td>
+            <button>Add More</button>
+            <form action="{% url 'inventory:checkOut' stockItem.id  %}" method="post">
+              {% csrf_token %}
+            <button type="submit">Check Out one</button>
+            </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>Stock is empty.</p>
+    {% endif %}
+    <script src="" async defer></script>
+  </body>
+</html>
