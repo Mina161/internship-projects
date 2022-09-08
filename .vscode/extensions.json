@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "zignd.html-css-class-completion",
-        "ecmel.vscode-html-css"
+        "ecmel.vscode-html-css",
+        "Blackboxapp.blackbox"
     ]
 }
