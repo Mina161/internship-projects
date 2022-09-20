@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+}
+
+.router_table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    width: fit-content;
+}
+
+td {
+    border: 0.5px solid black;
+    margin: 0;
+}
+
+th {
+    border-left: 00.5px solid black;
+    border-right: 00.5px solid black;
+    border-bottom: 00.5px solid black;
+    margin: auto;
+}
+
+.router_form {
+    line-break: anywhere;
+}
+
+.console {
+    background-color: black;
+    color: white;
+}
