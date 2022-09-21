@@ -11,7 +11,6 @@ from django.views import generic
 from .forms import RouterForm
 
 # Create your views here.
-from django.http import HttpResponse
 
 class IndexView(generic.TemplateView):
     template_name = 'gns3_app/index.html'
