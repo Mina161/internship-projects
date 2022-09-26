@@ -49,7 +49,7 @@ def addRouter(request):
     if request.method == 'POST':
         form = RouterForm(request.POST)
         if form.is_valid():
-            r = Router(device_type = "cisco_ios", name = request.POST['name'], host = request.POST['host'], username = request.POST['username'], password = request.POST['password'], secret = request.POST['secret'], port = request.POST['port'])
+            r = Router(device_type = "cisco_ios_telnet", name = request.POST['name'], host = request.POST['host'], username = request.POST['username'], password = request.POST['password'], secret = request.POST['secret'], port = request.POST['port'])
             r.save()
             return HttpResponseRedirect(reverse('gns3_app:routerIndex'))
     else:

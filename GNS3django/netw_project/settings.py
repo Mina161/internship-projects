@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gns3_app.apps.Gns3AppConfig',
+    'gns3_app',
 ]
 
 MIDDLEWARE = [
